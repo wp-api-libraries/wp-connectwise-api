@@ -56,6 +56,12 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 			static::$api_key = $api_key;
 			static::$connectwise_site = $connectwise_site;
+			
+			
+			$this->args['headers'] = array(
+				'Content-Type' => 'application/json',
+				'Authorization' => 'Basic ' . $api_key,
+			);
 
 		}
 
