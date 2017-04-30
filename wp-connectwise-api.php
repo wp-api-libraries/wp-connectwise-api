@@ -34,10 +34,10 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @var string
 		 */
 		static private $api_key;
-		
+
 		/**
 		 * Connect Wise Site.
-		 * 
+		 *
 		 * @var mixed
 		 * @access private
 		 * @static
@@ -56,8 +56,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 			static::$api_key = $api_key;
 			static::$connectwise_site = $connectwise_site;
-			
-			
+
+
 			$this->args['headers'] = array(
 				'Content-Type' => 'application/json',
 				'Authorization' => 'Basic ' . $api_key,
@@ -87,13 +87,14 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
-		
+		/* COMPANIES. */
+
 		/**
 		 * Get Companies.
-		 * 
+		 *
 		 * @access public
 		 * @param mixed $conditions Conditions.
-		 * @param mixed $order_by Order By. 
+		 * @param mixed $order_by Order By.
 		 * @param mixed $child_conditions Child Conditions.
 		 * @param mixed $custom_field_conditions Custom Field Conditions.
 		 * @param mixed $page Page.
@@ -101,9 +102,43 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @return void
 		 */
 		public function get_companies( $conditions, $order_by, $child_conditions, $custom_field_conditions, $page, $page_size ) {
-			
+
 		// https://{connectwiseSite}/v4_6_release/apis/3.0/company/companies
-			
+
+		}
+
+		public function add_company() {
+
+		}
+
+		public function get_companies_count() {
+
+		}
+
+		public function get_company( $company_id ) {
+
+		}
+
+		public function delete_company() {
+
+		}
+
+		public function replace_company() {
+
+		}
+
+		public function update_company() {
+
+		}
+
+		public function merge_company() {
+
+		}
+
+		/* COMPANY - CUSTOM NOTES. */
+
+		public function get_custom_status_notes() {
+
 		}
 	}
 }
