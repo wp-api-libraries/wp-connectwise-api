@@ -43,13 +43,6 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		static private $connectwise_version;
 
 		/**
-		 * Company ID
-		 *
-		 * @var string
-		 */
-		static private $company_id;
-
-		/**
 		 * BaseAPI Endpoint
 		 *
 		 * @var string
@@ -70,12 +63,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 			static::$connectwise_site = $connectwise_site;
 			static::$connectwise_version = $connectwise_version;
-			static::$company_id = $company_id;
-			static::$connectwise_site = $connectwise_site;
-
 
 			$this->base_uri = 'https://' . $connectwise_site . '/' . static::$connectwise_version;
-
 
 			$this->args['headers'] = array(
 				'Content-Type' => 'application/json',
