@@ -10,7 +10,7 @@
 * Plugin URI: https://github.com/wp-api-libraries/wp-connectwise-api
 * Description: Perform API requests to ConnectWise in WordPress.
 * Author: WP API Libraries
-* Version: 1.0.o
+* Version: 1.0.0
 * Author URI: https://wp-api-libraries.com
 * GitHub Plugin URI: https://github.com/wp-api-libraries/wp-connectwise-api
 * GitHub Branch: master
@@ -29,20 +29,34 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 	class ConnectWiseAPI {
 
 		/**
-		 * API Key
+		 * ConnectWise Site
 		 *
 		 * @var string
 		 */
-		static private $api_key;
+		static private $connectwise_site;
 
 		/**
-		 * Connect Wise Site.
+		 * ConnectWise Version
 		 *
-		 * @var mixed
-		 * @access private
-		 * @static
+		 * @var string
 		 */
-		static private $connectwise_site;
+		static private $connectwise_version;
+
+		/**
+		 * Company ID
+		 *
+		 * @var string
+		 */
+		static private $company_id;
+
+		/**
+		 * BaseAPI Endpoint
+		 *
+		 * @var string
+		 * @access protected
+		 */
+		protected $base_uri;
+
 
 		/**
 		 * Construct.
@@ -52,15 +66,20 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param mixed $connectwise_site ConnectWise Site URL.
 		 * @return void
 		 */
-		public function __construct( $api_key, $connectwise_site ) {
+		public function __construct( $connectwise_site, $connectwise_version, $company_id, $public_key, $private_key ) {
 
-			static::$api_key = $api_key;
 			static::$connectwise_site = $connectwise_site;
+			static::$connectwise_version = $connectwise_version;
+			static::$company_id = $company_id;
+			static::$connectwise_site = $connectwise_site;
+
+
+			$this->base_uri = 'https://' . $connectwise_site . '/' . static::$connectwise_version;
 
 
 			$this->args['headers'] = array(
 				'Content-Type' => 'application/json',
-				'Authorization' => 'Basic ' . $api_key,
+				'Authorization' => 'Basic ' . base64_encode($company_id.'+'.$public_key.':'.$private_key),
 			);
 
 		}
@@ -74,7 +93,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 */
 		private function fetch( $request ) {
 
-			$response = wp_remote_get( $request );
+			$response = wp_remote_get( $request, $this->args );
 			$code = wp_remote_retrieve_response_code( $response );
 
 			if ( 200 !== $code ) {
@@ -103,7 +122,9 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 */
 		public function get_companies( $conditions, $order_by, $child_conditions, $custom_field_conditions, $page, $page_size ) {
 
-		// https://{connectwiseSite}/v4_6_release/apis/3.0/company/companies
+			$request = $this->base_uri . '/apis/3.0/company/companies';
+
+			return $this->fetch( $request );
 
 		}
 
@@ -138,6 +159,20 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		/* COMPANY - CUSTOM NOTES. */
 
 		public function get_custom_status_notes() {
+
+		}
+
+		/**
+		 * Get Tickets.
+		 *
+		 * @access public
+		 * @return void
+		 */
+		public function get_tickets() {
+
+			$request = $this->base_uri . '/apis/3.0/service/tickets';
+
+			return $this->fetch( $request );
 
 		}
 	}
