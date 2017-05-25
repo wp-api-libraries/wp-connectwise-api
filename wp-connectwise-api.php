@@ -164,5 +164,70 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return $this->fetch( $request );
 
 		}
+
+		/**
+		 * get_tickets_activities function.
+		 *
+		 * @access public
+		 * @param mixed $ticket_id
+		 * @param string $page (default: '')
+		 * @param string $page_size (default: '')
+		 * @return void
+		 */
+		public function get_tickets_activities( $ticket_id, $page = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/activities';
+
+			return $this->fetch( $request );
+
+		}
+
+		/**
+		 * get_tickets_time_entries function.
+		 *
+		 * @access public
+		 * @param mixed $ticket_id
+		 * @param string $page (default: '')
+		 * @param string $page_size (default: '')
+		 * @return void
+		 */
+		public function get_tickets_time_entries( $ticket_id, $page = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/timeentries';
+
+			return $this->fetch( $request );
+
+		}
+
+		public function get_tickets_schedule_entries( $ticket_id, $page = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/scheduleentries';
+
+			return $this->fetch( $request );
+
+		}
+
+		/**
+		 * get_tickets_notes function.
+		 *
+		 * @access public
+		 * @param mixed $id
+		 * @param string $conditions (default: '')
+		 * @param string $order_by (default: '')
+		 * @param string $child_conditions (default: '')
+		 * @param string $custom_field_conditions (default: '')
+		 * @param string $page (default: '')
+		 * @param string $page_size (default: '')
+		 * @return void
+		 */
+		public function get_tickets_notes( $ticket_id, $conditions ='', $order_by = '', $child_conditions = '', $custom_field_conditions = '', $page = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/notes';
+
+			return $this->fetch( $request );
+
+		}
+
+
 	}
 }
