@@ -285,5 +285,45 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		}
 
 
+		/* TIME. */
+
+
+		/**
+		 * get_time_entries function.
+		 *
+		 * @access public
+		 * @param mixed $conditions
+		 * @param mixed $order_by
+		 * @param mixed $child_conditions
+		 * @param mixed $custom_field_conditions
+		 * @param mixed $page
+		 * @param mixed $page_size
+		 * @return void
+		 */
+		public function get_time_entries( $conditions, $order_by, $child_conditions, $custom_field_conditions, $page, $page_size ) {
+
+			$request = $this->base_uri . '/apis/3.0/time/entries';
+
+			return $this->fetch( $request );
+
+		}
+
+
+		/**
+		 * count_time_entries function.
+		 *
+		 * @access public
+		 * @param mixed $conditions
+		 * @param mixed $custom_field_conditions
+		 * @return void
+		 */
+		public function count_time_entries( $conditions, $custom_field_conditions ) {
+
+			$request = $this->base_uri . '/apis/3.0/time/entries/count';
+
+			return $this->fetch( $request );
+
+		}
+
 	}
 }
