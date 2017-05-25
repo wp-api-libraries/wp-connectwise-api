@@ -151,6 +151,36 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
+		public function get_campaigns( $conditions = '', $order_by = '', $child_conditions = '', $customfield_conditions = '', $page = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/marketing/campaigns';
+
+			return $this->fetch( $request );
+
+		}
+
+
+
+		/**
+		 * get_projects function.
+		 *
+		 * @access public
+		 * @param string $conditions (default: '')
+		 * @param string $order_by (default: '')
+		 * @param string $child_conditions (default: '')
+		 * @param string $customfield_conditions (default: '')
+		 * @param string $page (default: '')
+		 * @param string $page_size (default: '')
+		 * @return void
+		 */
+		public function get_projects( $conditions = '', $order_by = '', $child_conditions = '', $customfield_conditions = '', $page = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/project/projects';
+
+			return $this->fetch( $request );
+
+		}
+
 		/**
 		 * Get Tickets.
 		 *
@@ -199,6 +229,15 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
+		/**
+		 * get_tickets_schedule_entries function.
+		 *
+		 * @access public
+		 * @param mixed $ticket_id
+		 * @param string $page (default: '')
+		 * @param string $page_size (default: '')
+		 * @return void
+		 */
 		public function get_tickets_schedule_entries( $ticket_id, $page = '', $page_size = '' ) {
 
 			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/scheduleentries';
@@ -223,6 +262,23 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function get_tickets_notes( $ticket_id, $conditions ='', $order_by = '', $child_conditions = '', $custom_field_conditions = '', $page = '', $page_size = '' ) {
 
 			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/notes';
+
+			return $this->fetch( $request );
+
+		}
+
+		/**
+		 * get_tickets_products function.
+		 *
+		 * @access public
+		 * @param mixed $ticket_id
+		 * @param string $page (default: '')
+		 * @param string $page_size (default: '')
+		 * @return void
+		 */
+		public function get_tickets_products( $ticket_id, $page = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/products';
 
 			return $this->fetch( $request );
 
