@@ -97,6 +97,34 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		/* COMPANIES. */
 
+		public function get_address_formats() {
+
+		}
+
+		public function create_address_formats() {
+
+		}
+
+		public function get_address_formats_count() {
+
+		}
+
+		public function get_address_formats_by_id() {
+
+		}
+
+		public function delete_address_formats() {
+
+		}
+
+		public function replace_address_formats() {
+
+		}
+
+		public function update_address_formats() {
+
+		}
+
 		/**
 		 * Get Companies.
 		 *
@@ -109,7 +137,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param mixed $page_size Page Size.
 		 * @return void
 		 */
-		public function get_companies( $conditions, $order_by, $child_conditions, $custom_field_conditions, $page, $page_size ) {
+		public function get_companies( $conditions = '', $order_by = '', $child_conditions = '', $custom_field_conditions = '', $page = '', $page_size = '' ) {
 
 			$request = $this->base_uri . '/apis/3.0/company/companies';
 
@@ -117,7 +145,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
-		public function add_company() {
+		public function create_company() {
 
 		}
 
@@ -125,7 +153,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
-		public function get_company( $company_id ) {
+		public function get_company_by_id( $company_id ) {
 
 		}
 
@@ -145,6 +173,18 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
+		public function get_company_contacts( $conditions = '', $order_by  = '', $child_conditions = '', $custom_field_conditions = '', $page  = '', $page_size = '' ) {
+
+			$request = $this->base_uri . '/apis/3.0/company/contacts';
+
+			return $this->fetch( $request );
+
+		}
+
+		public function get_contact_image( $id, $use_default_flag = '', $last_modified = '' ) {
+
+		}
+
 		/* COMPANY - CUSTOM NOTES. */
 
 		public function get_custom_status_notes() {
@@ -159,7 +199,15 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
+		/* EXPENSE. */
 
+		/* FINANCE. */
+
+		/* MARKETING. */
+
+		/* PROCUREMENT. */
+
+		/* PROJECTS. */
 
 		/**
 		 * get_projects function.
@@ -180,6 +228,13 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return $this->fetch( $request );
 
 		}
+
+		/* SALES. */
+
+		/* SCHEDULE. */
+
+		/* SERVICE. */
+
 
 		/**
 		 * Get Tickets.
@@ -281,6 +336,22 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/products';
 
 			return $this->fetch( $request );
+
+		}
+
+		/* SYSTEM. */
+
+		// Accounting Packages
+
+		public function get_accounting_packages() {
+
+		}
+
+		public function get_accounting_packages_count( $conditions = '' ) {
+
+		}
+
+		public function get_accounting_packages_by_id( $id ) {
 
 		}
 
