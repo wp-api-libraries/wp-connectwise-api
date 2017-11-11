@@ -42,6 +42,16 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 */
 		static private $connectwise_version;
 
+
+		/**
+		 * ConnectWise API Version
+		 *
+		 * @var mixed
+		 * @access private
+		 * @static
+		 */
+		static private $api_version;
+
 		/**
 		 * BaseAPI Endpoint
 		 *
@@ -69,6 +79,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			$this->args['headers'] = array(
 				'Content-Type' => 'application/json',
 				'Authorization' => 'Basic ' . base64_encode($company_id.'+'.$public_key.':'.$private_key),
+				// 'Accept' => 'application/vnd.connectwise.com+json; version=3.0.0',
 			);
 
 		}
@@ -338,6 +349,26 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return $this->fetch( $request );
 
 		}
+
+		/* EXPENSE. */
+
+		/* EXPENSE. */
+
+		/* FINANCE. */
+
+		/* MARKETING. */
+
+		/* PROCUREMENT. */
+
+		/* PROJECT. */
+
+		/* SALES. */
+
+		/* SCHEDULE. */
+
+
+		/* SERVICE. */
+
 
 		/* SYSTEM. */
 
