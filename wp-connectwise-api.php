@@ -72,6 +72,13 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 */
 		static private $private_key;
 
+		/**
+		 * ConnectWise Next URL, for pagination
+		 *
+		 * @var string
+		 */
+		public $next;
+
 
 		/**
 		 * ConnectWise API Version
@@ -155,6 +162,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			$code = wp_remote_retrieve_response_code( $response );
 			$body = json_decode( wp_remote_retrieve_body( $response ) );
 
+			//$this->set_next_link($response);
+
 			$this->clear();
 			// Return WP_Error if request is not successful.
 			if ( ! $this->is_status_ok( $code ) ) {
@@ -164,6 +173,23 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return $body;
 		}
 
+		protected function set_next_link($response){
+		  $this->next = false;
+
+			//Split Next & last links
+			$links =  explode( ",", wp_remote_retrieve_header( $response, 'link' ) );
+
+			if( isset( $links[0] ) ){
+
+				$link =  explode( ";", $links[0] );
+				preg_match('~<(.*?)>~',$link[0], $res );
+
+				if( isset( $res[1] ) ){
+					$this->next = $res[1];
+				}
+
+			}
+		}
 
 		/**
 		 * Set request headers.
