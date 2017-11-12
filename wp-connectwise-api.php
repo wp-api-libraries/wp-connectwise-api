@@ -51,6 +51,27 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 */
 		static private $connectwise_version;
 
+		/**
+		 * ConnectWise Company ID
+		 *
+		 * @var string
+		 */
+		static private $company_id;
+
+		/**
+		 * ConnectWise Public Key
+		 *
+		 * @var string
+		 */
+		static private $public_key;
+
+		/**
+		 * ConnectWise Private Key
+		 *
+		 * @var string
+		 */
+		static private $private_key;
+
 
 		/**
 		 * ConnectWise API Version
@@ -84,7 +105,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			static::$connectwise_version = $connectwise_version;
 			static::$company_id = $company_id;
 			static::$public_key = $public_key;
-			static::$connectwise_version = $private_key;
+			static::$private_key = $private_key;
 
 			$this->base_uri = 'https://' . $connectwise_site . '/' . static::$connectwise_version . '/apis/3.0/';
 		}
