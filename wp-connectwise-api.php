@@ -73,11 +73,11 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		static private $private_key;
 
 		/**
-		 * ConnectWise Next URL, for pagination
+		 * ConnectWise links for pagination
 		 *
 		 * @var string
 		 */
-		public $next;
+		public $links;
 
 
 		/**
@@ -162,7 +162,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			$code = wp_remote_retrieve_response_code( $response );
 			$body = json_decode( wp_remote_retrieve_body( $response ) );
 
-			//$this->set_next_link($response);
+			$this->set_links($response);
 
 			$this->clear();
 			// Return WP_Error if request is not successful.
@@ -173,21 +173,24 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return $body;
 		}
 
-		protected function set_next_link($response){
-		  $this->next = false;
+		protected function set_links( $response ){
+		  $this->links = array();
 
-			//Split Next & last links
-			$links =  explode( ",", wp_remote_retrieve_header( $response, 'link' ) );
+			// Get links from response header.
+			$links = wp_remote_retrieve_header( $response, 'link' );
 
-			if( isset( $links[0] ) ){
-
-				$link =  explode( ";", $links[0] );
-				preg_match('~<(.*?)>~',$link[0], $res );
-
-				if( isset( $res[1] ) ){
-					$this->next = $res[1];
+			// Parse the string into a convenient array.
+			$links = explode( ',', $links );
+			if( ! empty( $links ) ){
+				foreach ( $links as $link ) {
+					$tmp =  explode( ";", $link );
+					$res = preg_match('~<(.*?)>~',$tmp[0], $match );
+					if( ! empty( $res ) ){
+						// Some string magic to set array key. Changes 'rel="next"' => 'next'.
+						$key = str_replace( array( 'rel=', '"' ),'',trim($tmp[1]));
+						$this->links[$key] = $match[1];
+					}
 				}
-
 			}
 		}
 
