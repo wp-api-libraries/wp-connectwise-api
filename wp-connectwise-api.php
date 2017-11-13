@@ -264,27 +264,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param mixed $page_size Page Size.
 		 * @return void
 		 */
-		public function get_companies( $conditions = null, $order_by = null, $child_conditions = null, $custom_field_conditions = null, $page = null, $page_size = null ) {
-
-			if ( null !== $conditions ) {
-				$args['conditions']  = $conditions;
-			}
-			if ( null !== $order_by ) {
-				$args['orderBy']  = $order_by;
-			}
-			if ( null !== $child_conditions ) {
-				$args['childconditions']  = $child_conditions;
-			}
-			if ( null !== $custom_field_conditions ) {
-				$args['customfieldconditions']  = $custom_field_conditions;
-			}
-			if ( null !== $page ) {
-				$args['page']  = $page;
-			}
-			if ( null !== $page_size ) {
-				$args['pageSize']  = $page_size;
-			}
-
+		public function get_companies( $args = array() ) {
 			return $this->build_request( 'company/companies', $args )->fetch();
 		}
 
@@ -316,12 +296,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
-		public function get_company_contacts( $conditions = '', $order_by  = '', $child_conditions = '', $custom_field_conditions = '', $page  = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/company/contacts';
-
-			return $this->fetch( $request );
-
+		public function get_company_contacts( $args = array() ) {
+			return $this->build_request( 'company/contacts', $args )->fetch();
 		}
 
 		public function get_contact_image( $id, $use_default_flag = '', $last_modified = '' ) {
@@ -334,12 +310,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 
-		public function get_campaigns( $conditions = '', $order_by = '', $child_conditions = '', $customfield_conditions = '', $page = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/marketing/campaigns';
-
-			return $this->fetch( $request );
-
+		public function get_campaigns( $args = array() ) {
+			return $this->build_request( 'marketing/campaigns', $args )->fetch();
 		}
 
 		/* EXPENSE. */
@@ -364,12 +336,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param string $page_size (default: '')
 		 * @return void
 		 */
-		public function get_projects( $conditions = '', $order_by = '', $child_conditions = '', $customfield_conditions = '', $page = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/project/projects';
-
-			return $this->fetch( $request );
-
+		public function get_projects( $args = array() ) {
+			return $this->build_request( 'project/projects', $args )->fetch();
 		}
 
 		/* SALES. */
@@ -385,12 +353,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @access public
 		 * @return void
 		 */
-		public function get_tickets() {
-
-			$request = $this->base_uri . '/apis/3.0/service/tickets';
-
-			return $this->fetch( $request );
-
+		public function get_tickets( $args = array() ) {
+			return $this->build_request( 'service/tickets', $args )->fetch();
 		}
 
 		/**
@@ -402,12 +366,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param string $page_size (default: '')
 		 * @return void
 		 */
-		public function get_tickets_activities( $ticket_id, $page = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/activities';
-
-			return $this->fetch( $request );
-
+		public function get_ticket_activities( $ticket_id, $args = array() ) {
+			return $this->build_request( "service/tickets/$ticket_id/activities", $args )->fetch();
 		}
 
 		/**
@@ -419,12 +379,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param string $page_size (default: '')
 		 * @return void
 		 */
-		public function get_tickets_time_entries( $ticket_id, $page = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/timeentries';
-
-			return $this->fetch( $request );
-
+		public function get_tickets_time_entries( $ticket_id, $args = array() ) {
+			return $this->build_request( "service/tickets/$ticket_id/timeentries", $args )->fetch();
 		}
 
 		/**
@@ -436,12 +392,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param string $page_size (default: '')
 		 * @return void
 		 */
-		public function get_tickets_schedule_entries( $ticket_id, $page = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/scheduleentries';
-
-			return $this->fetch( $request );
-
+		public function get_tickets_schedule_entries( $ticket_id, $args = array() ) {
+			return $this->build_request( "service/tickets/$ticket_id/scheduleentries", $args )->fetch();
 		}
 
 		/**
@@ -457,12 +409,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param string $page_size (default: '')
 		 * @return void
 		 */
-		public function get_tickets_notes( $ticket_id, $conditions ='', $order_by = '', $child_conditions = '', $custom_field_conditions = '', $page = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/notes';
-
-			return $this->fetch( $request );
-
+		public function get_tickets_notes( $ticket_id, $args = array() ) {
+			return $this->build_request( "service/tickets/$ticket_id/notes", $args )->fetch();
 		}
 
 		/**
@@ -474,12 +422,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param string $page_size (default: '')
 		 * @return void
 		 */
-		public function get_tickets_products( $ticket_id, $page = '', $page_size = '' ) {
-
-			$request = $this->base_uri . '/apis/3.0/service/tickets/' . $ticket_id . '/products';
-
-			return $this->fetch( $request );
-
+		public function get_tickets_products( $ticket_id, $args = array() ) {
+			return $this->build_request( "service/tickets/$ticket_id/products", $args )->fetch();
 		}
 
 		/* EXPENSE. */
@@ -534,12 +478,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param mixed $page_size
 		 * @return void
 		 */
-		public function get_time_entries( $conditions, $order_by, $child_conditions, $custom_field_conditions, $page, $page_size ) {
-
-			$request = $this->base_uri . '/apis/3.0/time/entries';
-
-			return $this->fetch( $request );
-
+		public function get_time_entries( $args = array() ) {
+			return $this->build_request( "time/entries", $args )->fetch();
 		}
 
 
@@ -551,12 +491,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * @param mixed $custom_field_conditions
 		 * @return void
 		 */
-		public function count_time_entries( $conditions, $custom_field_conditions ) {
-
-			$request = $this->base_uri . '/apis/3.0/time/entries/count';
-
-			return $this->fetch( $request );
-
+		public function count_time_entries( $args = array() ) {
+			return $this->build_request( "time/entries/count", $args )->fetch();
 		}
 
 	}
