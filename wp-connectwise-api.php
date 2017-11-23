@@ -277,7 +277,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		}
 
 		public function get_company_by_id( $company_id ) {
-
+			return $this->build_request( "company/companies/$company_id" )->fetch();
 		}
 
 		public function delete_company() {
