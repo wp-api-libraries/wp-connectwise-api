@@ -300,6 +300,10 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return $this->build_request( 'company/contacts', $args )->fetch();
 		}
 
+		public function get_company_contacts_by_id( int $contact_id ) {
+			return $this->build_request( "company/contacts/$contact_id" )->fetch();
+		}
+
 		public function get_contact_image( $id, $use_default_flag = '', $last_modified = '' ) {
 
 		}
