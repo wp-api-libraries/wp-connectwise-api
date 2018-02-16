@@ -324,15 +324,15 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		}
 		
-		public function get_company_sites( $args = array() ) {
+		public function get_company_sites( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites" )->fetch();
 		}
 		
-		public function get_company_sites_count( $args = array() ) {
+		public function get_company_sites_count( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites/count" )->fetch();
 		}
 		
-		public function get_company_site_by_id( $args = array() ) {
+		public function get_company_site_by_id( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites/$site_id" )->fetch();
 		}
 
