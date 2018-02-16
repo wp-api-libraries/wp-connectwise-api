@@ -172,7 +172,14 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 			return $body;
 		}
-
+		
+		/**
+		 * set_links function.
+		 * 
+		 * @access protected
+		 * @param mixed $response
+		 * @return void
+		 */
 		protected function set_links( $response ){
 		  $this->links = array();
 
@@ -271,9 +278,18 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function create_company() {
 
 		}
-
-		public function get_companies_count() {
-
+		
+		/**
+		 * Get Company Counts.
+		 * 
+		 * @access public
+		 * @param mixed $conditions Conditions.
+		 * @param mixed $custom_field_conditions Custom Field Conditions.
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function get_companies_count( $args = array() ) {
+			return $this->build_request( 'company/companies/count', $args )->fetch();
 		}
 
 		public function get_company_by_id( $company_id ) {
@@ -306,6 +322,18 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		public function get_contact_image( $id, $use_default_flag = '', $last_modified = '' ) {
 
+		}
+		
+		public function get_company_sites( $args = array() ) {
+			return $this->build_request( "company/companies/$company_id/sites" )->fetch();
+		}
+		
+		public function get_company_sites_count( $args = array() ) {
+			return $this->build_request( "company/companies/$company_id/sites/count" )->fetch();
+		}
+		
+		public function get_company_site_by_id( $args = array() ) {
+			return $this->build_request( "company/companies/$company_id/sites/$site_id" )->fetch();
 		}
 
 		/* COMPANY - CUSTOM NOTES. */
