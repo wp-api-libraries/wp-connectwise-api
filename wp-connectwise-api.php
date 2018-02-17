@@ -230,33 +230,82 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		}
 
 		/* COMPANIES. */
-
-		public function get_address_formats() {
-
+		
+		/**
+		 * get_address_formats function.
+		 * 
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function get_address_formats( $args = array() ) {
+			return $this->build_request( 'company/addressFormats', $args )->fetch();
 		}
-
+		
+		/**
+		 * create_address_formats function.
+		 * 
+		 * @access public
+		 * @return void
+		 */
 		public function create_address_formats() {
-
+			return $this->build_request( 'company/addressFormats', $args, 'POST' )->fetch();
 		}
-
-		public function get_address_formats_count() {
-
+		
+		/**
+		 * get_address_formats_count function.
+		 * 
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function get_address_formats_count( $args = array() ) {
+			return $this->build_request( '/addressFormats/count', $args )->fetch();
 		}
-
-		public function get_address_formats_by_id() {
-
+		
+		/**
+		 * get_address_formats_by_id function.
+		 * 
+		 * @access public
+		 * @param mixed $address_format_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function get_address_formats_by_id( $address_format_id, $args = array() ) {
+			return $this->build_request( "/addressFormats/$address_format_id", $args )->fetch();
 		}
-
-		public function delete_address_formats() {
-
+		
+		/**
+		 * delete_address_formats function.
+		 * 
+		 * @access public
+		 * @param mixed $address_format_id
+		 * @return void
+		 */
+		public function delete_address_formats( $address_format_id ) {
+			return $this->build_request( "company/addressFormats/$address_format_id", null, 'DELETE' )->fetch();
 		}
-
-		public function replace_address_formats() {
-
+		
+		/**
+		 * replace_address_formats function.
+		 * 
+		 * @access public
+		 * @param mixed $address_format_id
+		 * @return void
+		 */
+		public function replace_address_formats( $address_format_id ) {
+			return $this->build_request( "company/addressFormats/$address_format_id", null, 'PUT' )->fetch();
 		}
-
-		public function update_address_formats() {
-
+		
+		/**
+		 * update_address_formats function.
+		 * 
+		 * @access public
+		 * @param mixed $address_format_id
+		 * @return void
+		 */
+		public function update_address_formats( $address_format_id ) {
+			return $this->build_request( "company/addressFormats/$address_format_id", null, 'PATCH' )->fetch();
 		}
 
 		/**
