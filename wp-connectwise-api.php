@@ -28,8 +28,6 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 	 */
 	class ConnectWiseAPI {
 
-
-
 		/**
 		 * Route being called.
 		 *
@@ -229,7 +227,10 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return ( 200 <= $code && 300 > $code );
 		}
 
-		/* COMPANIES. */
+		/* =========================================================== COMPANY. =========================================================== */
+		/* Company Docs - https://developer.connectwise.com/manage/rest?a=Company */
+		
+		/* Address Formats. */
 		
 		/**
 		 * get_address_formats function.
@@ -307,6 +308,8 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function update_address_formats( $address_format_id ) {
 			return $this->build_request( "company/addressFormats/$address_format_id", null, 'PATCH' )->fetch();
 		}
+		
+		/* Companies. */
 
 		/**
 		 * Get Companies.
@@ -323,9 +326,17 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function get_companies( $args = array() ) {
 			return $this->build_request( 'company/companies', $args )->fetch();
 		}
-
-		public function create_company() {
-
+		
+		/**
+		 * Create Company
+		 * @docs https://developer.connectwise.com/manage/rest?a=Company&e=Companies&o=CREATE
+		 * 
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function create_company( $args = array() ) {
+			return $this->build_request( 'company/companies', $args )->fetch();
 		}
 		
 		/**
@@ -340,38 +351,106 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function get_companies_count( $args = array() ) {
 			return $this->build_request( 'company/companies/count', $args )->fetch();
 		}
-
+		
+		/**
+		 * get_company_by_id function.
+		 * 
+		 * @access public
+		 * @param mixed $company_id
+		 * @return void
+		 */
 		public function get_company_by_id( $company_id ) {
 			return $this->build_request( "company/companies/$company_id" )->fetch();
 		}
-
-		public function delete_company() {
-
+		
+		/**
+		 * delete_company function.
+		 * 
+		 * @access public
+		 * @param mixed $company_id
+		 * @return void
+		 */
+		public function delete_company( $company_id ) {
+			return $this->build_request( "company/companies/$company_id", null, 'DELETE' )->fetch();
 		}
-
-		public function replace_company() {
-
+		
+		/**
+		 * replace_company function.
+		 * 
+		 * @access public
+		 * @param mixed $company_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function replace_company( $company_id, $args = array() ) {
+			return $this->build_request( "company/companies/$company_id", $args, 'PUT' )->fetch();
 		}
-
-		public function update_company() {
-
+		
+		/**
+		 * update_company function.
+		 * 
+		 * @access public
+		 * @param mixed $company_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function update_company( $company_id, $args = array() ) {
+			return $this->build_request( "company/companies/$company_id", $args, 'PATCH' )->fetch();
 		}
-
-		public function merge_company() {
-
+		
+		/**
+		 * merge_company function.
+		 * 
+		 * @access public
+		 * @param mixed $company_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function merge_company( $company_id, $args = array() ) {
+			return $this->build_request( "company/companies/$company_id", $args, 'POST' )->fetch();
 		}
-
-		public function get_company_contacts( $args = array() ) {
-			return $this->build_request( 'company/contacts', $args )->fetch();
+		
+		/* Company Custom Notes. */
+		
+		public function get_company_custom_status_notes() {
+			
 		}
-
-		public function get_company_contacts_by_id( int $contact_id ) {
-			return $this->build_request( "company/contacts/$contact_id" )->fetch();
+		
+		public function create_company_custom_status_notes() {
+			
 		}
-
-		public function get_contact_image( $id, $use_default_flag = '', $last_modified = '' ) {
-
+		
+		public function get_company_custom_status_notes_count() {
+			
 		}
+		
+		public function get_company_custom_status_notes_by_id() {
+			
+		}
+		
+		public function delete_company_custom_status_notes() {
+			
+		}
+		
+		public function replace_company_custom_status_notes() {
+			
+		}
+		
+		public function update_company_custom_status_notes() {
+			
+		}
+		
+		/* Company Groups. */
+		
+		/* Company Management Summary Reports. */
+		
+		/* Company Note Types. */
+		
+		/* Company Notes. */
+		
+		/* Company Picker Items. */
+		
+		/* Company Sites. */
 		
 		public function get_company_sites( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites" )->fetch();
@@ -384,7 +463,24 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function get_company_site_by_id( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites/$site_id" )->fetch();
 		}
+		
+		/* Company Contacts. */
 
+		public function get_company_contacts( $args = array() ) {
+			return $this->build_request( 'company/contacts', $args )->fetch();
+		}
+
+		public function get_company_contacts_by_id( int $contact_id ) {
+			return $this->build_request( "company/contacts/$contact_id" )->fetch();
+		}
+
+		public function get_company_contact_image( int $contact_id, $use_default_flag = '', $last_modified = '' ) {
+			return $this->build_request( "company/contacts/$contact_id/image" )->fetch();
+		}
+		
+
+		
+	
 		/* COMPANY - CUSTOM NOTES. */
 
 		public function get_custom_status_notes() {
@@ -422,6 +518,10 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		}
 
 		/* SALES. */
+		
+		public function get_orders( $args = array() ) {
+			return $this->build_request( 'sales/orders', $args )->fetch();
+		}
 
 		/* SCHEDULE. */
 
@@ -506,8 +606,6 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function get_tickets_products( $ticket_id, $args = array() ) {
 			return $this->build_request( "service/tickets/$ticket_id/products", $args )->fetch();
 		}
-
-		/* EXPENSE. */
 
 		/* EXPENSE. */
 
