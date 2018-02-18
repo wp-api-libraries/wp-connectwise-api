@@ -528,24 +528,6 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		/* PROCUREMENT. */
 
-		/* PROJECTS. */
-
-		/**
-		 * get_projects function.
-		 *
-		 * @access public
-		 * @param string $conditions (default: '')
-		 * @param string $order_by (default: '')
-		 * @param string $child_conditions (default: '')
-		 * @param string $customfield_conditions (default: '')
-		 * @param string $page (default: '')
-		 * @param string $page_size (default: '')
-		 * @return void
-		 */
-		public function get_projects( $args = array() ) {
-			return $this->build_request( 'project/projects', $args )->fetch();
-		}
-
 		/* SALES. */
 		
 		public function get_orders( $args = array() ) {
@@ -790,9 +772,22 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		
 		/* PROJECTS. */
 		
-		public function get_projects() {
-			
+		/**
+		 * get_projects function.
+		 *
+		 * @access public
+		 * @param string $conditions (default: '')
+		 * @param string $order_by (default: '')
+		 * @param string $child_conditions (default: '')
+		 * @param string $customfield_conditions (default: '')
+		 * @param string $page (default: '')
+		 * @param string $page_size (default: '')
+		 * @return void
+		 */
+		public function get_projects( $args = array() ) {
+			return $this->build_request( 'project/projects', $args )->fetch();
 		}
+		
 		
 		public function create_project() {
 			
