@@ -616,6 +616,209 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		/* PROCUREMENT. */
 
 		/* PROJECT. */
+		/* @docs - https://developer.connectwise.com/manage/rest?a=Project */
+		
+		
+		/* PROJECT CONTACTS. */
+		
+		/**
+		 * get_project_contacts function.
+		 * 
+		 * @access public
+		 * @param mixed $project_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function get_project_contacts( $project_id, $args = array() ) {
+			return $this->build_request( "project/projects/$project_id/contacts", $args )->fetch();
+		}
+		
+		/**
+		 * create_project_contacts function.
+		 * 
+		 * @access public
+		 * @param mixed $project_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function create_project_contacts( $project_id, $args = array() ) {
+			return $this->build_request( "project/projects/$project_id/contacts", $args, 'POST' )->fetch();
+		}
+		
+		/**
+		 * get_project_contact_by_id function.
+		 * 
+		 * @access public
+		 * @param mixed $project_id
+		 * @param mixed $contact_id
+		 * @return void
+		 */
+		public function get_project_contact_by_id( $project_id, $contact_id ) {
+			return $this->build_request( "project/projects/$project_id/contacts/$contact_id", $args )->fetch();
+		}
+		
+		/**
+		 * delete_project_contact function.
+		 * 
+		 * @access public
+		 * @param mixed $project_id
+		 * @param mixed $contact_id
+		 * @return void
+		 */
+		public function delete_project_contact( $project_id, $contact_id ) {
+			return $this->build_request( "project/projects/$project_id/contacts/$contact_id", $args, 'DELETE' )->fetch();
+		}
+		
+		/* PROJECT NOTES. */
+		
+			public function get_project_notes( $project_id, $args = array() ) {
+				return $this->build_request( "project/projects/$project_id/notes", $args )->fetch();
+			}
+			
+			public function create_project_notes( $project_id, $args = array() ) {
+				return $this->build_request( "project/projects/$project_id/notes", $args, 'POST' )->fetch();
+			}
+			
+			public function get_project_notes_count( $project_id, $args = array() ) {
+				return $this->build_request( "project/projects/$project_id/notes/count", $args )->fetch();
+			}
+			
+			public function get_project_notes_by_id() {
+				
+			}
+			
+			public function delete_project_notes() {
+				
+			}
+			
+			public function replace_project_notes() {
+				
+			}
+			
+			public function update_project_notes() {
+				
+			}
+		
+		/* PROJECT PHASES. */
+		
+			public function get_project_phases() {
+	    
+		  	}
+		  
+		  	public function create_project_phases() {
+		    
+		  	}
+		  
+		  	public function count_project_phases() {
+		    
+		  	}
+		  
+		  	public function get_project_phases_by_id() {
+		    
+		  	}
+		  
+		  	public function delete_project_phases() {
+		    
+		  	}
+		  
+		  	public function replace_project_phases() {
+		    
+		  	}
+		  
+		  	public function update_project_phases() {
+		    
+		  	}
+		
+		/* PROJECT STATUSES. */
+		
+		  public function get_project_statuses() {
+
+		  }
+		
+		  public function create_project_statuses() {
+		  
+		  }
+		
+		  public function count_project_statuses() {
+		  
+		  }
+		
+		  public function get_project_statuses_by_id() {
+		  
+		  }
+		
+		  public function delete_project_statuses() {
+		  
+		  }
+		
+		  public function replace_project_statuses() {
+		  
+		  }
+		
+		  public function update_project_statuses() {
+		  
+		  }
+		
+		/* PROJECTS. */
+		
+		public function get_projects() {
+			
+		}
+		
+		public function create_project() {
+			
+		}
+		
+		public function count_projects() {
+			
+		}
+		
+		public function get_project_by_id() {
+			
+		}
+		
+		public function delete_project() {
+			
+		}
+		
+		public function replace_project() {
+			
+		}
+		
+		public function update_project() {
+			
+		}
+		
+		/* PROJECTS TEAM MEMBERS. */
+		
+		  public function get_project_team_members() {
+
+		  }
+		
+		  public function create_project_team_members() {
+		  
+		  }
+		
+		  public function count_project_team_members() {
+		  
+		  }
+		
+		  public function get_project_team_members_by_id() {
+		  
+		  }
+		
+		  public function delete_project_team_members() {
+		  
+		  }
+		
+		  public function replace_project_team_members() {
+		  
+		  }
+		
+		  public function update_project_team_members() {
+		  
+		  }
+		
 
 		/* SALES. */
 
