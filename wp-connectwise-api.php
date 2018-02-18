@@ -471,28 +471,28 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			return $this->build_request( 'company/contacts', $args )->fetch();
 		}
 		
-		public function create_company_contact() {
-			
+		public function create_company_contact( $args = array() ) {
+			return $this->build_request( "company/contacts", $args, 'POST' )->fetch();
 		}
 		
-		public function get_company_contacts_count() {
-			
+		public function get_company_contacts_count( $args = array() ) {
+			return $this->build_request( "company/contacts/count", $args )->fetch();
 		}
 
 		public function get_company_contacts_by_id( int $contact_id ) {
 			return $this->build_request( "company/contacts/$contact_id" )->fetch();
 		}
 		
-		public function delete_company_contacts() {
-			
+		public function delete_company_contacts( $contact_id ) {
+			return $this->build_request( "company/contacts/$contact_id", $args, 'DELETE' )->fetch();
 		}
 		
-		public function replace_company_contacts() {
-			
+		public function replace_company_contacts( $contact_id, $args = array() ) {
+			return $this->build_request( "company/contacts/$contact_id", $args, 'PUT' )->fetch();
 		}
 		
-		public function update_company_contacts() {
-			
+		public function update_company_contacts( $contact_id, $args = array() ) {
+			return $this->build_request( "company/contacts/$contact_id", $args, 'PATCH' )->fetch();
 		}
 		
 		public function get_company_contact_portal_security( $contact_id ) {
