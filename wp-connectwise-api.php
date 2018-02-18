@@ -315,6 +315,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 * Get Companies.
 		 *
 		 * @access public
+		 * @docs https://developer.connectwise.com/manage/rest?a=Company&e=Companies&o=GET
 		 * @param mixed $conditions Conditions.
 		 * @param mixed $order_by Order By.
 		 * @param mixed $child_conditions Child Conditions.
@@ -469,9 +470,41 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		public function get_company_contacts( $args = array() ) {
 			return $this->build_request( 'company/contacts', $args )->fetch();
 		}
+		
+		public function create_company_contact() {
+			
+		}
+		
+		public function get_company_contacts_count() {
+			
+		}
 
 		public function get_company_contacts_by_id( int $contact_id ) {
 			return $this->build_request( "company/contacts/$contact_id" )->fetch();
+		}
+		
+		public function delete_company_contacts() {
+			
+		}
+		
+		public function replace_company_contacts() {
+			
+		}
+		
+		public function update_company_contacts() {
+			
+		}
+		
+		public function get_company_contact_portal_security( $contact_id ) {
+			return $this->build_request( "company/contacts/$contact_id/portalSecurity" )->fetch();
+		}
+		
+		public function request_company_contact_password() {
+			return $this->build_request( "company/contacts/requestPassword", null, 'POST' )->fetch();
+		}
+		
+		public function validate_company_contacts_portal_credentials( $email, $password ) {
+			return $this->build_request( "company/contacts/requestPassword", $args, 'POST' )->fetch();
 		}
 
 		public function get_company_contact_image( int $contact_id, $use_default_flag = '', $last_modified = '' ) {
@@ -482,10 +515,6 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		
 	
 		/* COMPANY - CUSTOM NOTES. */
-
-		public function get_custom_status_notes() {
-
-		}
 
 		public function get_campaigns( $args = array() ) {
 			return $this->build_request( 'marketing/campaigns', $args )->fetch();
