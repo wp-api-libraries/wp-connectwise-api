@@ -17,7 +17,8 @@
 */
 
 /* Exit if accessed directly. */
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; }
 
 
 /* Check if class exists. */
@@ -106,11 +107,11 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		 */
 		public function __construct( $connectwise_site, $connectwise_version, $company_id, $public_key, $private_key ) {
 
-			static::$connectwise_site = $connectwise_site;
+			static::$connectwise_site    = $connectwise_site;
 			static::$connectwise_version = $connectwise_version;
-			static::$company_id = $company_id;
-			static::$public_key = $public_key;
-			static::$private_key = $private_key;
+			static::$company_id          = $company_id;
+			static::$public_key          = $public_key;
+			static::$private_key         = $private_key;
 
 			$this->base_uri = 'https://' . $connectwise_site . '/' . static::$connectwise_version . '/apis/3.0/';
 		}
@@ -129,7 +130,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 			// Add Method and Route.
 			$this->args['method'] = $method;
-			$this->route = $route;
+			$this->route          = $route;
 
 			// Generate query string for GET requests.
 			if ( 'GET' === $method ) {
@@ -188,10 +189,10 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 			if ( ! empty( $links ) ) {
 				foreach ( $links as $link ) {
 					$tmp = explode( ';', $link );
-					$res = preg_match( '~<(.*?)>~',$tmp[0], $match );
+					$res = preg_match( '~<(.*?)>~', $tmp[0], $match );
 					if ( ! empty( $res ) ) {
 						// Some string magic to set array key. Changes 'rel="next"' => 'next'.
-						$key = str_replace( array( 'rel=', '"' ),'',trim( $tmp[1] ) );
+						$key                 = str_replace( array( 'rel=', '"' ), '', trim( $tmp[1] ) );
 						$this->links[ $key ] = $match[1];
 					}
 				}
@@ -204,7 +205,7 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		protected function set_headers() {
 			// Set request headers.
 			$this->args['headers'] = array(
-				'Content-Type' => 'application/json',
+				'Content-Type'  => 'application/json',
 				'Authorization' => 'Basic ' . base64_encode( static::$company_id . '+' . static::$public_key . ':' . static::$private_key ),
 			);
 		}
@@ -454,60 +455,165 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		/* Company Sites. */
 
+		/**
+		 * get_company_sites function.
+		 *
+		 * @access public
+		 * @param mixed $company_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_company_sites( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites" )->fetch();
 		}
 
+		/**
+		 * get_company_sites_count function.
+		 *
+		 * @access public
+		 * @param mixed $company_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_company_sites_count( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites/count" )->fetch();
 		}
 
+		/**
+		 * get_company_site_by_id function.
+		 *
+		 * @access public
+		 * @param mixed $company_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_company_site_by_id( $company_id, $args = array() ) {
 			return $this->build_request( "company/companies/$company_id/sites/$site_id" )->fetch();
 		}
 
 		/* Company Contacts. */
 
+		/**
+		 * get_company_contacts function.
+		 *
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_company_contacts( $args = array() ) {
 			return $this->build_request( 'company/contacts', $args )->fetch();
 		}
 
+		/**
+		 * create_company_contact function.
+		 *
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function create_company_contact( $args = array() ) {
 			return $this->build_request( 'company/contacts', $args, 'POST' )->fetch();
 		}
 
+		/**
+		 * get_company_contacts_count function.
+		 *
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_company_contacts_count( $args = array() ) {
 			return $this->build_request( 'company/contacts/count', $args )->fetch();
 		}
 
+		/**
+		 * get_company_contacts_by_id function.
+		 *
+		 * @access public
+		 * @param int $contact_id
+		 * @return void
+		 */
 		public function get_company_contacts_by_id( int $contact_id ) {
 			return $this->build_request( "company/contacts/$contact_id" )->fetch();
 		}
 
+		/**
+		 * delete_company_contacts function.
+		 *
+		 * @access public
+		 * @param mixed $contact_id
+		 * @return void
+		 */
 		public function delete_company_contacts( $contact_id ) {
 			return $this->build_request( "company/contacts/$contact_id", $args, 'DELETE' )->fetch();
 		}
 
+		/**
+		 * replace_company_contacts function.
+		 *
+		 * @access public
+		 * @param mixed $contact_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function replace_company_contacts( $contact_id, $args = array() ) {
 			return $this->build_request( "company/contacts/$contact_id", $args, 'PUT' )->fetch();
 		}
 
+		/**
+		 * update_company_contacts function.
+		 *
+		 * @access public
+		 * @param mixed $contact_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function update_company_contacts( $contact_id, $args = array() ) {
 			return $this->build_request( "company/contacts/$contact_id", $args, 'PATCH' )->fetch();
 		}
 
+		/**
+		 * get_company_contact_portal_security function.
+		 *
+		 * @access public
+		 * @param mixed $contact_id
+		 * @return void
+		 */
 		public function get_company_contact_portal_security( $contact_id ) {
 			return $this->build_request( "company/contacts/$contact_id/portalSecurity" )->fetch();
 		}
 
+		/**
+		 * request_company_contact_password function.
+		 *
+		 * @access public
+		 * @return void
+		 */
 		public function request_company_contact_password() {
 			return $this->build_request( 'company/contacts/requestPassword', null, 'POST' )->fetch();
 		}
 
+		/**
+		 * validate_company_contacts_portal_credentials function.
+		 *
+		 * @access public
+		 * @param mixed $email
+		 * @param mixed $password
+		 * @return void
+		 */
 		public function validate_company_contacts_portal_credentials( $email, $password ) {
 			return $this->build_request( 'company/contacts/requestPassword', $args, 'POST' )->fetch();
 		}
 
+		/**
+		 * get_company_contact_image function.
+		 *
+		 * @access public
+		 * @param int $contact_id
+		 * @param string $use_default_flag (default: '')
+		 * @param string $last_modified (default: '')
+		 * @return void
+		 */
 		public function get_company_contact_image( int $contact_id, $use_default_flag = '', $last_modified = '' ) {
 			return $this->build_request( "company/contacts/$contact_id/image" )->fetch();
 		}
@@ -517,6 +623,13 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		/* COMPANY - CUSTOM NOTES. */
 
+		/**
+		 * get_campaigns function.
+		 *
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_campaigns( $args = array() ) {
 			return $this->build_request( 'marketing/campaigns', $args )->fetch();
 		}
@@ -531,6 +644,13 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		/* SALES. */
 
+		/**
+		 * get_orders function.
+		 *
+		 * @access public
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_orders( $args = array() ) {
 			return $this->build_request( 'sales/orders', $args )->fetch();
 		}
@@ -684,14 +804,38 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 
 		/* PROJECT NOTES. */
 
+		/**
+		 * get_project_notes function.
+		 *
+		 * @access public
+		 * @param mixed $project_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_project_notes( $project_id, $args = array() ) {
 			return $this->build_request( "project/projects/$project_id/notes", $args )->fetch();
 		}
 
+		/**
+		 * create_project_notes function.
+		 *
+		 * @access public
+		 * @param mixed $project_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function create_project_notes( $project_id, $args = array() ) {
 			return $this->build_request( "project/projects/$project_id/notes", $args, 'POST' )->fetch();
 		}
 
+		/**
+		 * get_project_notes_count function.
+		 *
+		 * @access public
+		 * @param mixed $project_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
 		public function get_project_notes_count( $project_id, $args = array() ) {
 			return $this->build_request( "project/projects/$project_id/notes/count", $args )->fetch();
 		}
