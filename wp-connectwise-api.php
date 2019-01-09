@@ -727,6 +727,18 @@ if ( ! class_exists( 'ConnectWiseAPI' ) ) {
 		}
 
 		/**
+		 * get_tickets_tasks function.
+		 *
+		 * @access public
+		 * @param mixed $ticket_id
+		 * @param array $args (default: array())
+		 * @return void
+		 */
+		public function get_tickets_tasks( $ticket_id, $args = array() ) {
+			return $this->build_request( "service/tickets/$ticket_id/tasks", $args )->fetch();
+		}
+
+		/**
 		 * get_tickets_products function.
 		 *
 		 * @access public
